@@ -47,6 +47,7 @@ namespace _1pdf
             pictureBox1 = new PictureBox();
             numericUpDownPage = new NumericUpDown();
             label1 = new Label();
+            comboBoxLanguage = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownPage).BeginInit();
             SuspendLayout();
@@ -195,11 +196,22 @@ namespace _1pdf
             label1.TabIndex = 9;
             label1.Text = "Ir a página";
             // 
+            // comboBoxLanguage
+            // 
+            comboBoxLanguage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            comboBoxLanguage.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxLanguage.FormattingEnabled = true;
+            comboBoxLanguage.Location = new System.Drawing.Point(799, 19);
+            comboBoxLanguage.Name = "comboBoxLanguage";
+            comboBoxLanguage.Size = new System.Drawing.Size(121, 23);
+            comboBoxLanguage.TabIndex = 10;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(941, 471);
+            Controls.Add(comboBoxLanguage);
             Controls.Add(label1);
             Controls.Add(numericUpDownPage);
             Controls.Add(pictureBox1);
@@ -234,6 +246,7 @@ namespace _1pdf
         private System.Windows.Forms.Button btnArriba;
         private NumericUpDown numericUpDownPage;
         private Label label1;
+        private ComboBox comboBoxLanguage;
     }
 }
 

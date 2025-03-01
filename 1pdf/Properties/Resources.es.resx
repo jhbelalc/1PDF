@@ -117,77 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="bad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Document" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Document.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ButtonDown" xml:space="preserve">
-    <value>Move Down</value>
+    <value>Bajar</value>
   </data>
   <data name="ButtonFile" xml:space="preserve">
-    <value>Select File</value>
+    <value>Seleccionar Archivo</value>
   </data>
   <data name="ButtonGenerate" xml:space="preserve">
-    <value>Convert to 1 PDF</value>
+    <value>Convertir 1 PDF</value>
   </data>
   <data name="ButtonRemove" xml:space="preserve">
-    <value>Remove</value>
+    <value>Eliminar</value>
   </data>
   <data name="ButtonSelectFiles" xml:space="preserve">
-    <value>Select or drag and drop</value>
+    <value>Seleccionar o arrastre y suelte</value>
   </data>
   <data name="ButtonUp" xml:space="preserve">
-    <value>Move Up</value>
+    <value>Subir</value>
   </data>
   <data name="ErrorNotSelected" xml:space="preserve">
-    <value>Cannot suggest name for new PDF</value>
+    <value>No puedo sugerir nombre para el nuevo PDF</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value>Process not correct</value>
+    <value>Proceso Fallido</value>
   </data>
   <data name="FileCreatedSuccess" xml:space="preserve">
-    <value>The file {0} has been created successfully.</value>
+    <value>El archivo {0} ha sido creado exitosamente.</value>
   </data>
   <data name="FileCreationError" xml:space="preserve">
-    <value>The file {0} could not be created.</value>
+    <value>El archivo {0} no pudo ser creado.</value>
   </data>
   <data name="LabelName" xml:space="preserve">
-    <value>File Name</value>
+    <value>Nombre del Archivo</value>
   </data>
   <data name="LabelPage" xml:space="preserve">
-    <value>Go to page</value>
+    <value>Ir a la página</value>
   </data>
   <data name="MissingParameterMessage" xml:space="preserve">
-    <value>Please specify the name of the new PDF file to be created.</value>
+    <value>Por favor especificar el nombre del nuevo archivo PDF a crear.</value>
   </data>
   <data name="MissingParameterTitle" xml:space="preserve">
-    <value>New PDF File not specified</value>
+    <value>Nuevo archivo PDF no especificado</value>
   </data>
   <data name="NoFileSelected" xml:space="preserve">
-    <value>Please select a file</value>
+    <value>Por favor selecciones un archivo</value>
   </data>
   <data name="NotSelected" xml:space="preserve">
-    <value>You must have at least 2 PDF in the list.</value>
+    <value>Debe tener al menos 2 archivos en la lista de PDFs.</value>
   </data>
   <data name="SuccessTitle" xml:space="preserve">
-    <value>Process OK</value>
+    <value>Proceso OK</value>
   </data>
   <data name="TextInvalidPage" xml:space="preserve">
-    <value>Invalid page number</value>
+    <value>Número de página inválido.</value>
   </data>
   <data name="TextSelectPreview" xml:space="preserve">
-    <value>Please select a PDF for preview</value>
+    <value>Seleccione un PDF para vista previa</value>
   </data>
 </root>

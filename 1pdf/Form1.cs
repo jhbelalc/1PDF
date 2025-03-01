@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Metadata;
 using System.Windows.Forms;
 using iText.Kernel.Pdf.Canvas.Parser.Data;
@@ -14,6 +15,9 @@ using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using PdfiumViewer;
 using iTextPdfDocument = iText.Kernel.Pdf.PdfDocument;
 using PdfiumPdfDocument = PdfiumViewer.PdfDocument;
+using System.Resources;
+using System.Globalization;
+using System.Threading;
 
 namespace _1pdf
 {
@@ -21,13 +25,109 @@ namespace _1pdf
     {
         List<string> fileNames = new List<string>();
         private int totalPages = 0;
+        private ResourceManager rm;
         public Form1()
         {
             InitializeComponent();
+            rm = new ResourceManager("_1pdf.Properties.Resources", Assembly.GetExecutingAssembly());
+            //rm = Properties.Resources.ResourceManager;
+            InitializeLanguageSelector();
+            ApplyLocalization();
+ 
             listBox1.AllowDrop = true;
             listBox1.DragEnter += ListBox1_DragEnter;
             listBox1.DragDrop += ListBox1_DragDrop;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+        }
+
+
+        private void InitializeLanguageSelector()
+        {
+            comboBoxLanguage.Items.AddRange(new string[] { "English", "Español" });
+
+            // Set the initial selected item based on current culture
+            string currentCulture = CultureInfo.CurrentUICulture.Name.ToLower();
+            if (currentCulture.StartsWith("es"))
+            {
+                comboBoxLanguage.SelectedIndex = 1; // Spanish
+            }
+            else
+            {
+                comboBoxLanguage.SelectedIndex = 0; // English (default)
+            }
+
+            // Add the event handler for selection changes
+            comboBoxLanguage.SelectedIndexChanged += (s, e) =>
+            {
+                string culture = comboBoxLanguage.SelectedIndex == 0 ? "en-US" : "es-ES";
+                ChangeLanguage(culture);
+            };
+        }
+
+        private void ApplyLocalization()
+        {
+            try
+            {
+                // Get culture based on ComboBoxLanguage selection
+                CultureInfo currentCulture;
+                if (comboBoxLanguage.SelectedIndex == 1) // Spanish
+                {
+                    currentCulture = new CultureInfo("es-ES");
+                }
+                else // English or default
+                {
+                    currentCulture = new CultureInfo("en-US");
+                }
+
+                // Set the current thread culture
+                Thread.CurrentThread.CurrentUICulture = currentCulture;
+                Thread.CurrentThread.CurrentCulture = currentCulture;
+
+                // Update form labels
+                btnRemove.Text = rm.GetString("ButtonRemove", currentCulture);
+                btnArchivo.Text = rm.GetString("ButtonFile", currentCulture);
+                btnArriba.Text = rm.GetString("ButtonUp", currentCulture);
+                btnAbajo.Text = rm.GetString("ButtonDown", currentCulture);
+                lblNombre.Text = rm.GetString("LabelName", currentCulture);
+                btnSelectFiles.Text = rm.GetString("ButtonSelectFiles", currentCulture);
+                label1.Text = rm.GetString("LabelPages", currentCulture);
+                btnGenerar.Text = rm.GetString("ButtonGenerate", currentCulture);
+
+                // Update messages
+                string noFileSelectedMessage = rm.GetString("NoFileSelected", currentCulture);
+                string fileCreatedMessage = rm.GetString("FileCreatedSuccess", currentCulture);
+                string fileErrorMessage = rm.GetString("FileCreationError", currentCulture);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error applying localization: " + ex.Message);
+            }
+        }
+
+
+        private void ChangeLanguage(string cultureName)
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureName);
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
+
+                // Update ComboBox selection to match the new culture
+                if (cultureName.StartsWith("es", StringComparison.OrdinalIgnoreCase))
+                {
+                    comboBoxLanguage.SelectedIndex = 1; // Spanish
+                }
+                else
+                {
+                    comboBoxLanguage.SelectedIndex = 0; // English
+                }
+
+                ApplyLocalization();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error changing language: " + ex.Message);
+            }
         }
 
 
@@ -85,10 +185,14 @@ namespace _1pdf
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (listBox1.Items.Count == 0) return;
+            if (listBox1.Items.Count <= 1) return;
             if (string.IsNullOrWhiteSpace(txtnombre.Text))
             {
-                MessageBox.Show("Debe escoger el nombre del archivo a generar.", "Falta un parámetro para proceder:", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(
+                    rm.GetString("MissingParameterMessage", CultureInfo.CurrentUICulture),
+                    rm.GetString("MissingParameterTitle", CultureInfo.CurrentUICulture),
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Stop);
                 return;
             }
             List<string> inputFiles = new List<string>();
@@ -99,11 +203,19 @@ namespace _1pdf
             MergePdfDocuments(inputFiles, outputFile);
             if (File.Exists(outputFile))
             {
-                MessageBox.Show("El archivo " + outputFile + " ha sido creado con éxito.", "Proceso finalizado de forma correcta.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    string.Format(rm.GetString("FileCreatedSuccess", CultureInfo.CurrentUICulture), outputFile),
+                    rm.GetString("SuccessTitle", CultureInfo.CurrentUICulture),
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("El archivo " + outputFile + " no pudo ser creado.", "Proceso con errores.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    string.Format(rm.GetString("FileCreationError", CultureInfo.CurrentUICulture), outputFile),
+                    rm.GetString("ErrorTitle", CultureInfo.CurrentUICulture),
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -200,14 +312,16 @@ namespace _1pdf
 
         private void lblNombre_Click(object sender, EventArgs e)
         {
-            if (listBox1.Items.Count == 0)
+            if (listBox1.Items.Count <= 1)
             {
-                MessageBox.Show("Debe tener al menos 1 archivo en la lista de PDFs.", "Falta un parámetro para proceder:", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                string sNotFileSelected = rm.GetString("NotSelected", CultureInfo.CurrentUICulture);
+                string sTitleNFS =rm.GetString("ErrorNotSelected", CultureInfo.CurrentUICulture);
+                MessageBox.Show(sNotFileSelected, sTitleNFS, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
             string cPath = Path.GetDirectoryName(listBox1.Items[0].ToString());
             string cName = Path.GetFileName(listBox1.Items[0].ToString());
-            txtnombre.Text = cPath + @"\Unido-" + cName;
+            txtnombre.Text = cPath + @"\_1PDF-" + cName;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -235,10 +349,11 @@ namespace _1pdf
             {
                 totalPages = document.PageCount; // Actualiza el número total de páginas
                 numericUpDownPage.Maximum = totalPages; // Ajusta el máximo del NumericUpDown
+                string sInvalidPage = rm.GetString("TextInvalidPage", CultureInfo.CurrentUICulture);
 
                 if (pageNumber > totalPages || pageNumber < 1)
                 {
-                    MessageBox.Show("Número de página inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(sInvalidPage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -275,9 +390,10 @@ namespace _1pdf
         {
             if (pictureBox1.Image == null)
             {
+                string sNotSelected = rm.GetString("TextSelectPreview", CultureInfo.CurrentUICulture);
                 using (Font myFont = new Font("Arial", 14))
                 {
-                    e.Graphics.DrawString("Seleccione un PDF para vista previa", myFont, Brushes.Black, new Point(2, 2));
+                    e.Graphics.DrawString(sNotSelected, myFont, Brushes.Black, new Point(2, 2));
                 }
             }
         }

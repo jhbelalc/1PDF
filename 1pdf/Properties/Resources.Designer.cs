@@ -19,7 +19,7 @@ namespace _1pdf.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -81,6 +81,60 @@ namespace _1pdf.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Move Down.
+        /// </summary>
+        internal static string ButtonDown {
+            get {
+                return ResourceManager.GetString("ButtonDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select File.
+        /// </summary>
+        internal static string ButtonFile {
+            get {
+                return ResourceManager.GetString("ButtonFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Convert to 1 PDF.
+        /// </summary>
+        internal static string ButtonGenerate {
+            get {
+                return ResourceManager.GetString("ButtonGenerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Remove.
+        /// </summary>
+        internal static string ButtonRemove {
+            get {
+                return ResourceManager.GetString("ButtonRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select or drag and drop.
+        /// </summary>
+        internal static string ButtonSelectFiles {
+            get {
+                return ResourceManager.GetString("ButtonSelectFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Move Up.
+        /// </summary>
+        internal static string ButtonUp {
+            get {
+                return ResourceManager.GetString("ButtonUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Document {
@@ -97,6 +151,123 @@ namespace _1pdf.Properties {
             get {
                 object obj = ResourceManager.GetObject("Down", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cannot suggest name for new PDF.
+        /// </summary>
+        internal static string ErrorNotSelected {
+            get {
+                return ResourceManager.GetString("ErrorNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Process not correct.
+        /// </summary>
+        internal static string ErrorTitle {
+            get {
+                return ResourceManager.GetString("ErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The file {0} has been created successfully..
+        /// </summary>
+        internal static string FileCreatedSuccess {
+            get {
+                return ResourceManager.GetString("FileCreatedSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The file {0} could not be created..
+        /// </summary>
+        internal static string FileCreationError {
+            get {
+                return ResourceManager.GetString("FileCreationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a File Name.
+        /// </summary>
+        internal static string LabelName {
+            get {
+                return ResourceManager.GetString("LabelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Go to page.
+        /// </summary>
+        internal static string LabelPage {
+            get {
+                return ResourceManager.GetString("LabelPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please specify the name of the new PDF file to be created..
+        /// </summary>
+        internal static string MissingParameterMessage {
+            get {
+                return ResourceManager.GetString("MissingParameterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a New PDF File not specified.
+        /// </summary>
+        internal static string MissingParameterTitle {
+            get {
+                return ResourceManager.GetString("MissingParameterTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please select a file.
+        /// </summary>
+        internal static string NoFileSelected {
+            get {
+                return ResourceManager.GetString("NoFileSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must have at least 2 PDF in the list..
+        /// </summary>
+        internal static string NotSelected {
+            get {
+                return ResourceManager.GetString("NotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Process OK.
+        /// </summary>
+        internal static string SuccessTitle {
+            get {
+                return ResourceManager.GetString("SuccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Invalid page number.
+        /// </summary>
+        internal static string TextInvalidPage {
+            get {
+                return ResourceManager.GetString("TextInvalidPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please select a PDF for preview.
+        /// </summary>
+        internal static string TextSelectPreview {
+            get {
+                return ResourceManager.GetString("TextSelectPreview", resourceCulture);
             }
         }
         
